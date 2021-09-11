@@ -1,0 +1,19 @@
+{
+  "name": "nodejs-generate-price-to-words",
+  "version": "1.0.0",
+  "description": "Just public code how to generate price number to words and SEO-able",
+  "main": "index.js",
+  "repository": "https://github.com/agilworld/nodejs-generate-price-to-words.git",
+  "author": "Dian Afrial <agil.rahadi@gmail>",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "numeral": "^2.0.6"
+  },
+  "engines": {
+    "node": "12.9.1"
+  },
+  "scripts": {
+    "build":"node index.js"
+  }
+}
