@@ -12,6 +12,7 @@ Install all packages with type `yarn install` or `npm install`
 ---------------
 
 just type on your favorite terminal `yarn run build` or `npm run build`
+and you can see a couple json file 
 
 
 # Go Open Source
