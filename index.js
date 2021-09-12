@@ -2,7 +2,7 @@ const fs = require("fs")
 const { kebabCase } = require("lodash")
 const numeral = require("numeral")
 
-numeral.register('locale', 'my', {
+numeral.register('locale', 'id', {
     delimiters: {
         thousands: '',
         decimal: ''
@@ -18,7 +18,7 @@ numeral.register('locale', 'my', {
     }
   });
   
-numeral.locale('my')
+numeral.locale('id')
 
 const typePriceCase = [
     'di bawah',
@@ -132,7 +132,12 @@ const getNumberingSewa = () => {
     let d = 60
     let a = [...Array(d)].map((x, i)=>{ 
         i=i+1
-        if(i<11) {
+        if(i>20) {
+            return {
+                value:(i-20)*1000000000,
+                key:(i-20)*1000000000
+            }
+        } else if(i<11) {
             return {
               value:i*10000000,
               key:i*10000000
@@ -145,8 +150,7 @@ const getNumberingSewa = () => {
         }
     })
     return a
-}
-  
+} 
 
 const generateJsonData = () => {
     let promises = [
@@ -156,19 +160,20 @@ const generateJsonData = () => {
 
     Promise.all(promises).then(values=>{
         values.forEach(value=>{
+            // expect id as unique file identifer
             createJsonFile(value, kebabCase(value[0].id) )
         })
     })
 }
 /* 
-    Method to convert JSON format data into XML format
+    method to save file and parse json string
 */
 const createJsonFile = (list, status) => {
     saveFile( JSON.stringify(list), status);
 }
 
 /* 
-    Method to Update sitemap.xml file content
+    Method to create json file
 */
 const saveFile = (json, status) => {
     fs.writeFile(`price-${status}.json`, json, (err) => {
